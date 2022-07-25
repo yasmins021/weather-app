@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    
+    
+    <title>Weather App</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <nav class="navbar">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="navbar" class="form-label"></label>
+            Weather In:</label
+          >
+          <span id="city" class="navbar">Calexico</span>
+        </div>
+        <form id="search-line" class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="type a city..."
+            aria-label="type a city..."
+            id="exampleInputEmail1"
+          />
+          <button type="submit" class="btn btn-primary">Search</button>
+          
+        </form>
+      </nav>
+
+      <div class="row">
+        <div class="col">
+          <ul class="no-bullets">
+            <li id="current-day" class="li1">Monday</li>
+            <li id="local-time" class="li2">16:00</li>
+            <br />
+            <li id="local-date" class="li2">June, 26 2022</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h2>
+            <span id="weather-icon"><i class="fa-solid fa-sun"></i></span>
+            <br />
+            <span id="temperature"> </span>
+            <span class="celsius" id="celsius">C</span> |
+            <span class="fahrenheit" id="fahrenheit">F</span>
+            <br />
+            <span id="weather-description"></span>
+          </h2>
+        </div>
+        <div class="col">
+          <p class="p3"><i class="fa-solid fa-droplet"></i><span id="humidity"></span> <span> %</span> </p>
+          <p class="p3"><i class="fa-solid fa-wind"></i><span id="wind"></span><span> km/h</span></p>
+         
+
+        </div>
+      </div>
+
+      <table class="table">
+        <hr />
+        <thead>
+          <tr>
+            <th scope="col">
+              Saturday
+              <p>
+                <img
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/038/108/original/sun.png?1655876199"
+                  alt="sun"
+                />
+              </p>
+              24°<span class="notbold">/ 18°</span>
+            </th>
+            <th scope="col">
+              Sunday
+              <p>
+                <img
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/038/105/original/sun_clouds.png?1655874457"
+                  alt="sun and clouds"
+                />
+              </p>
+              27°<span class="notbold">/ 21°</span>
+            </th>
+            <th scope="col">
+              Monday
+              <p>
+                <img
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/038/105/original/sun_clouds.png?1655874457"
+                  alt="sun and clouds"
+                />
+              </p>
+              21°<span class="notbold">/ 15°</span>
+            </th>
+            <th scope="col">
+              Tuesday
+              <p>
+                <img
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/038/107/original/thunderstorm.png?1655875998"
+                  alt="thunderstorm"
+                />
+              </p>
+              25°<span class="notbold">/ 18°</span>
+            </th>
+            <th scope="col">
+              Wednesday
+              <p>
+                <img
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/038/106/original/cloudy.png?1655875388"
+                  alt="cloudy"
+                />
+              </p>
+              27°<span class="notbold">/ 21°</span>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <p class="footer">
+      This page was build by
+      <a
+        href="https://www.linkedin.com/in/yasmin-sanchez-ba2a84211/"
+        target="_blank"
+      >
+        <em>Yasmin Sanchez</em>
+      </a>
+    </p>
+  </body>
+  <script src="index.js"></script>
+  <script
+    src="https://kit.fontawesome.com/bb66f208bd.js"
+    crossorigin="anonymous"
+  ></script>
+</html>
