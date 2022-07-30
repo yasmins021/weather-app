@@ -124,22 +124,20 @@ searchForm.addEventListener("submit", city);
 
 //Tagging C and F id's in HTML, adding behavior by created a function.
 
-function convertToCelsius() {
-  let temp = document.querySelector("#temperature");
 
-  temp.innerHTML = "29º";
-}
 
-function convertToFahrenheit() {
-  let temp = document.querySelector("#temperature");
-
-  temp.innerHTML = "84º";
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let tempCelsius = document.querySelector("#celsius");
-let tempFahrinheit = document.querySelector("#fahrenheit");
+
 tempCelsius.addEventListener("click", convertToCelsius);
-tempFahrinheit.addEventListener("click", convertToFahrenheit);
+
 
 // Initial posission
 function initialData() {
