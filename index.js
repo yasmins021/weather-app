@@ -129,14 +129,14 @@ searchForm.addEventListener("submit", city);
 function displayCelsiusTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+ 
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let tempCelsius = document.querySelector("#celsius");
 
-tempCelsius.addEventListener("click", convertToCelsius);
+tempCelsius.addEventListener(convertToCelsius);
 
 
 // Initial posission
