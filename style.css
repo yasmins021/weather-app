@@ -118,11 +118,11 @@ li {
   }
   
   .footer-style {
-    color: blue;
+    color: black;
   }
   
   .footer-style a {
-    color: #d27358;
+    color: blue;
     text-decoration: none;
     margin-left: 20px;
   }
