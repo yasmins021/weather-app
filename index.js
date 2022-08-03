@@ -1,53 +1,35 @@
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
 
-// Creating a new virable which contains current date info.
 
-let time = new Date();
 
-// Creating virables which extract precisive info from date object.let
-
-let days = time.getDay();
-let minutes = time.getMinutes();
-let date = time.getDate();
-let month = time.getMonth();
-let year = time.getFullYear();
-
-// creating an array with days names and month.
-
-let dayNames = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wensday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-
-let monthName = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-
-// Creating new virables which takes from
-//the virable "days" && "month" data and inject it to
-//the array "dayNames" && "month" thus get a current day name.
-
-let currentDay = dayNames[days];
-let currentMonth = monthName[month];
-
-//Creating a function with null adding to the first 9 minutes,
-// new virables which contains current hours and minutes && date, month, year.
 
 function properMinutes() {
   if (minutes < 10) {
@@ -63,7 +45,7 @@ if (hours < 10) {
 let currentTime = `${hours}:${properMinutes()}`;
 let currentDate = `${date} ${currentMonth} ${year}`;
 
-// tagging HTML properties
+
 
 let weatherDay = document.querySelector("#current-day");
 weatherDay.innerHTML = currentDay;
@@ -72,11 +54,6 @@ weatherTime.innerHTML = currentTime;
 let weatherDate = document.querySelector("#local-date");
 weatherDate.innerHTML = currentDate;
 
-//TASK #2
-
-// Creating a function which prevent a default behavior of a submit button
-// tagging searh line to store input value
-// displaying input value to HTML element.
 
 function weatherForecast(response) {
   let weatherIcon = {
@@ -115,14 +92,10 @@ function city(event) {
   axios.get(apiUrl).then(weatherForecast);
 }
 
-// Tagging HTML form and adding behavior through created function.
 
 let searchForm = document.querySelector("#search-line");
 searchForm.addEventListener("submit", city);
 
-//Task #3
-
-//Tagging C and F id's in HTML, adding behavior by created a function.
 
 
 
