@@ -124,11 +124,10 @@ li {
   .footer-style a {
     color: #d27358;
     text-decoration: none;
-    margin-left: 100px;
+    margin-left: 20px;
   }
   
   .footer-style a:hover {
     color: #b34b2f;
     text-decoration: none;
   }
-  
