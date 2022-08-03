@@ -58,123 +58,50 @@ function displayForcast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
 
-
-
-function properMinutes() {
-  if (minutes < 10) {
-    return "0" + minutes;
-  }
-  return minutes;
-}
-let hours = time.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-
-let currentTime = `${hours}:${properMinutes()}`;
-let currentDate = `${date} ${currentMonth} ${year}`;
-
-
-
-let weatherDay = document.querySelector("#current-day");
-weatherDay.innerHTML = currentDay;
-let weatherTime = document.querySelector("#local-time");
-weatherTime.innerHTML = currentTime;
-let weatherDate = document.querySelector("#local-date");
-weatherDate.innerHTML = currentDate;
-
-
-function weatherForecast(response) {
-  let weatherIcon = {
-    Clouds: `<i class="fa-solid fa-cloud"></i>`,
-    Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
-    Clear: `<i class="fa-solid fa-sun"></i>`
-  };
-  let snowWeatherIcon = document.querySelector("#weather-icon");
-  let weatherDescription = response.data.weather[0].main;
-  snowWeatherIcon.innerHTML = weatherIcon[weatherDescription];
-  let snowWeather = document.querySelector("#weather-description");
-  snowWeather.innerHTML = weatherDescription;
-
-  let wind = response.data.wind.speed;
-  let snowWind = document.querySelector("#wind");
-  let windRound = Math.round(wind);
-  snowWind.innerHTML = windRound;
-  let humidity = response.data.main.humidity;
-  let snowHumidity = document.querySelector("#humidity");
-  snowHumidity.innerHTML = humidity;
-  let tempCurrent = response.data.main.temp;
-  let tempRound = Math.round(tempCurrent);
-  let snowTemp = document.querySelector("#temperature");
-  snowTemp.innerHTML = `${tempRound}º`;
-}
-
-function city(event) {
-  event.preventDefault();
-  let input = document.querySelector("#exampleInputEmail1");
-  let city = document.querySelector("#city");
-  city.innerHTML = input["value"];
-  let unit = "metric";
   let apiKey = "5981069ab3293d45828d868bcfe3682b";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input["value"]}&appid=${apiKey}&units=${unit}`;
-
-  axios.get(apiUrl).then(weatherForecast);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForcast);
 }
-
-
-let searchForm = document.querySelector("#search-line");
-searchForm.addEventListener("submit", city);
-
-
-
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
- 
+function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+  celciusTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+  cityElement.innerHTML = response.data.name;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 
-let tempCelsius = document.querySelector("#celsius");
-
-tempCelsius.addEventListener(convertToCelsius);
-
-
-// Initial posission
-function initialData() {
-  function initialPosition(response) {
-    let weatherIcon = {
-      Clouds: `<i class="fa-solid fa-cloud"></i>`,
-      Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
-      Clear: `<i class="fa-solid fa-sun"></i>`
-    };
-    let snowWeatherIcon = document.querySelector("#weather-icon");
-    let weatherDescription = response.data.weather[0].main;
-    snowWeatherIcon.innerHTML = weatherIcon[weatherDescription];
-    let snowWeather = document.querySelector("#weather-description");
-    snowWeather.innerHTML = weatherDescription;
-
-    let wind = response.data.wind.speed;
-    let snowWind = document.querySelector("#wind");
-    let windRound = Math.round(wind);
-    snowWind.innerHTML = windRound;
-    let humidity = response.data.main.humidity;
-    let snowHumidity = document.querySelector("#humidity");
-    snowHumidity.innerHTML = humidity;
-    let tempCurrent = response.data.main.temp;
-    let tempRound = Math.round(tempCurrent);
-    let snowTemp = document.querySelector("#temperature");
-    snowTemp.innerHTML = `${tempRound}º`;
-    let city = response.data.name;
-    let snowCity = document.querySelector("#city");
-    snowCity.innerHTML = city;
-  }
-
-  let apiKey = "5981069ab3293d45828d868bcfe3682b";
-  let unit = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=kyiv&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(initialPosition);
+function search(city) {
+  let apiKey = "8d77851ee4e661d39914483344a94b0c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
 }
-initialData();
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Calexico");
+  
+  
+  
+
