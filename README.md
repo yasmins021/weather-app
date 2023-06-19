@@ -11,7 +11,9 @@ This weather application provides real-time weather information and a 5-day fore
 
 ## Technologies Used
 
-- HTML,CSS, and JavaScript
+- HTML
+- CSS
+- JavaScript
 - Weather API: Open Weather APi
 
 ## Usage
